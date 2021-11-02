@@ -1,18 +1,51 @@
 <template>
 
-<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+	<div>
+	<h1> BIRDSCAPES</h1>
+	</div>
 
-<div>
-<h1> BIRDSCAPES</h1>
-</div>
+<fieldset>  
+  <legend>Horários</legend>
 
-<div>
-</div>
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label >amanhecer</label>
+  
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label>dia</label>
+  
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label>entardecer</label>
+
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label>noite</label>
+
+</fieldset>
+
+<fieldset>  
+  <legend>Estação do ano</legend>
+
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label >primavera</label>
+  
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label >verão</label>
+  
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label>outono</label>
+  
+  <input type="radio" id="notify-on" name="notify" value="on">
+  <label>inverno</label>
+
+</fieldset>
+
 
 </template>
 
 <script>
 </script>
+
+
+
 
 <style>
 </style>
