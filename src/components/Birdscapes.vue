@@ -1,14 +1,14 @@
 <template>
 
 	<div>
-	<h1> BIRDSCAPES</h1>
+	<h1>BIRDSCAPES</h1>
 	</div>
 
 	<fieldset>  
 		<legend>Horários</legend>
 
 		<input v-model="time" type="radio" value="6:00">
-		<label >amanhecer</label>
+		<label>amanhecer</label>
 
 		<input v-model="time" type="radio" value="10:00">
 		<label>dia</label>
@@ -24,10 +24,10 @@
 		<legend>Estação do ano</legend>
 
 		<input v-model="season" type="radio" id="notify-on" name="notify" value="primavera">
-		<label >primavera</label>
+		<label>primavera</label>
 
 		<input v-model="season" type="radio" id="notify-on" name="notify" value="verao">
-		<label >verão</label>
+		<label>verão</label>
 
 		<input v-model="season" type="radio" id="notify-on" name="notify" value="outono">
 		<label>outono</label>
@@ -89,4 +89,10 @@
 
 
 <style>
+	#musgoEscuro {
+		background-color: #c6cd91
+	}
+	#musgoClaro {
+		background-color: #e6eea3
+	}
 </style>
