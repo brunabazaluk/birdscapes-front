@@ -38,6 +38,10 @@
 	
 	<p>{{ time }}</p>
 
+	<div>
+		<p>{{ tudo }}</p>	
+	</div>
+
 </template>
 
 
@@ -59,8 +63,15 @@
 				popular: [],
 				latim: [],
 				ingles: [],
-				audio_passaro: ''
+				audio_passaro: '',
+				tudo: []
 			}
+		},
+		mounted() {
+			fetch('http://127.0.0.1:5000/success')
+			.then(res => res.json())
+			.then(data => this.tudo = JSON.parse(data))
+			.catch(err => console.log(err.message))
 		}
 	}
 
@@ -69,6 +80,8 @@
 	obj.season  = season;
 	obj.position = position;
 	//var json_obj= JSON.stringify(obj);
+
+
 
 
 </script>
