@@ -1,8 +1,5 @@
 <template>
 
-	<div>
-	<h1>BIRDSCAPES</h1>
-	</div>
 
 	<fieldset>  
 		<legend>Horários</legend>
@@ -93,6 +90,9 @@
 		background-color: #c6cd91
 	}
 	#musgoClaro {
+		background-color: #e6eea3
+	}
+	body {
 		background-color: #e6eea3
 	}
 </style>
