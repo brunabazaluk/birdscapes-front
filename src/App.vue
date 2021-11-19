@@ -1,6 +1,6 @@
 <template>
   <img alt="Birdscapes logo" src="./assets/birdscapes.png">
-  <Birdscapes msg="Welcome to Your Vue.js App"/>
+  <Birdscapes/>
 </template>
 
 <script>
@@ -24,3 +24,4 @@ export default {
   margin-top: 60px;
 }
 </style>
+

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@progress/kendo-vue-buttons": "^2.6.2",
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "json-server": "^0.17.0",
     "vue": "^3.0.0"
