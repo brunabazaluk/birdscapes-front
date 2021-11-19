@@ -36,7 +36,7 @@
 	<p>{{ time }}</p>
 
 	<div>
-		<p>{{ tudo }}</p>	
+		<p>{{ vozes }}</p>	
 	</div>
 
 </template>
@@ -45,85 +45,49 @@
 
 
 <script>
-	import axios from 'axios'
+import axios from 'axios';
 
-	export default {
-		created() {	 
-			this.getData();
-			//this.fetchData();
+const $axios = axios.create({
+	baseURL: 'https://birdscapes.herokuapp.com'
+});
+
+export default {
+	mounted() {	 
+		this.getData();
+	},
+	data() {
+		return {
+			time: '10:00',
+			season: 'primavera',
+			position: '100',
+			imgs: [],
+			popular: [],
+			latim: [],
+			ingles: [],
+			audio_passaro: '',
+			tudo: []
+		}
+	},
+
+	methods: {
+		async getData() {
+			const { data } = await $axios.post('/success', {
+				season: 'inverno',
+				time: '11:00',
+				position: '200'
+			});
+			this.tudo = data;
 		},
-		data() {
-			return {
-				time: '10:00',
-				season: 'primavera',
-				position: '100',
-				imgs: [],
-				popular: [],
-				latim: [],
-				ingles: [],
-				audio_passaro: '',
-				tudo: []
-			}
-		},
+	},
 
-		methods: {
-			getData() {
-				axios({
-					baseURL: 'https://birdscapes.herokuapp.com',
-					url: '/success',
-					method: 'post',
-					data: {
-						season: 'inverno',
-						time: '11:00',
-						position: '200'
-					}
-				}).then(res=>{
-							console.log(res);
-				}).catch(err=>{
-						console.log(err);
-				});
-
-				fetch('https://birdscapes.herokuapp.com/success')
-				.then(res => res.json())
-				.then(data => this.tudo = data)
-				.catch(err => console.log(err.message))
-			
-			},
-
-		},
-//		mounted() {
-//			//fetch('http://127.0.0.1:5000/success')
-//			fetch('https://birdscapes.herokuapp.com/success')
-//			.then(res => res.json())
-//			.then(data => this.tudo = data)
-//			.catch(err => console.log(err.message))
-//		}
-
+	computed: {
+		vozes() {
+			return this.tudo.vozes;
+		}
 	}
 
-//	export default { 
-//		data() {
-//			return {
-//				time: '10:00',
-//				season: 'primavera',
-//				position: '100',
-//				imgs: [],
-//				popular: [],
-//				latim: [],
-//				ingles: [],
-//				audio_passaro: '',
-//				tudo: []
-//			}
-//		},
-//		mounted() {
-//			//fetch('http://127.0.0.1:5000/success')
-//			fetch('https://birdscapes.herokuapp.com/success')
-//			.then(res => res.json())
-//			.then(data => this.tudo = data)
-//			.catch(err => console.log(err.message))
-//		}
-//	}
-//
+}
+
 
 </script>
 
