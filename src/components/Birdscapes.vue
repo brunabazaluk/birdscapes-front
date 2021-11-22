@@ -1,5 +1,6 @@
 <template>
 
+	<button type="button" v-on:click="getData">Iniciar</button>
 
 	<fieldset>	
 		<legend>Horários</legend>
@@ -20,16 +21,16 @@
 	<fieldset>	
 		<legend>Estação do ano</legend>
 
-		<input v-model="season" type="radio" id="notify-on" name="notify" value="primavera">
+		<input v-model="season" type="radio" id="notify-on" name="notify" value="primavera"  >
 		<label>primavera</label>
 
-		<input v-model="season" type="radio" id="notify-on" name="notify" value="verao">
+		<input v-model="season" type="radio" id="notify-on" name="notify" value="verao"  >
 		<label>verão</label>
 
-		<input v-model="season" type="radio" id="notify-on" name="notify" value="outono">
+		<input v-model="season" type="radio" id="notify-on" name="notify" value="outono"  > 
 		<label>outono</label>
 
-		<input v-model="season" type="radio" id="notify-on" name="notify" value="inverno">
+		<input v-model="season" type="radio" id="notify-on" name="notify" value="inverno"  >
 		<label>inverno</label>
 	</fieldset>
 	
@@ -53,7 +54,7 @@ const $axios = axios.create({
 
 export default {
 	mounted() {	 
-		this.getData();
+		//this.getData();
 	},
 	data() {
 		return {
@@ -64,27 +65,36 @@ export default {
 			popular: [],
 			latim: [],
 			ingles: [],
-			audio_passaro: '',
-			tudo: []
+			vozes: [],
 		}
 	},
 
 	methods: {
 		async getData() {
 			const { data } = await $axios.post('/success', {
-				season: 'inverno',
-				time: '11:00',
-				position: '200'
+				season: this.season,
+				time: this.time,
+				position: this.position
 			});
-			this.tudo = data;
+			this.imgs = data.imagens;
+			this.popular = data.populares;
+			this.latim = data.latins;
+			this.vozes = data.vozes;
+			this.ingles = data.ingleses;
 		},
+		
 	},
 
-	computed: {
-		vozes() {
-			return this.tudo.vozes;
-		}
-	}
+	watch: {
+		season: function() { this.getData() }
+	},
+
+
+//	computed: {
+//		vozes() {
+//			return this.data.vozes;
+//		}
+//	}
 
 }
 
