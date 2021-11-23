@@ -1,5 +1,10 @@
 <template>
 
+	<div>
+		<img src="https://birdscapes.herokuapp.com/image/Aramides_saracura.png">
+		<p>{{ popular[0] }}</p>
+	</div>
+
 	<button type="button" v-on:click="getData">Iniciar</button>
 
 	<fieldset>	
@@ -46,6 +51,14 @@
 
 
 <script>
+
+//	<div v-for="(img,i) in imgs" :key="i">
+//		<img src="'https://birdscapes.herokuapp.com/image/' + img"  > 
+//		<p>{{ populares[i] }}</p>
+//	</div>
+
+
+
 import axios from 'axios';
 import {Howl} from 'howler';
 
@@ -83,13 +96,17 @@ export default {
 			this.vozes = data.vozes;
 			this.ingles = data.ingleses;
 		},
-		playVoz(voz){
-			var sound = new Howl({
-				src: 'https://birdscapes.herokuapp.com/voz/' + voz,
-				format: ['mp3', 'aac']
-			});
-
-			sound.play();
+		playVozes(vozes){
+			let sound = []
+			let n = vozes.length
+			for (let i = 0; i<n; i++){
+				sound[i] = new Howl({
+					src: 'https://birdscapes.herokuapp.com/voz/' + vozes[i],
+					format: ['mp3', 'aac'],
+					volume: 1 - 0.2*i
+				});
+				sound[i].play();
+			}
 		}
 		
 	},
@@ -97,7 +114,7 @@ export default {
 	watch: {
 		season: function() { this.getData() },
 		time: function() { this.getData() },
-		vozes: function() { this.playVoz(this.vozes[0]) }
+		vozes: function() { this.playVozes(this.vozes) }
 	},
 
 
