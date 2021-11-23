@@ -11,8 +11,10 @@
     "@progress/kendo-vue-buttons": "^2.6.2",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "howler": "^2.2.3",
     "json-server": "^0.17.0",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-howler": "^0.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

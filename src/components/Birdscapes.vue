@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios';
+import {Howl} from 'howler';
 
 const $axios = axios.create({
 	baseURL: 'https://birdscapes.herokuapp.com'
@@ -82,11 +83,21 @@ export default {
 			this.vozes = data.vozes;
 			this.ingles = data.ingleses;
 		},
+		playVoz(voz){
+			var sound = new Howl({
+				src: 'https://birdscapes.herokuapp.com/voz/' + voz,
+				format: ['mp3', 'aac']
+			});
+
+			sound.play();
+		}
 		
 	},
 
 	watch: {
-		season: function() { this.getData() }
+		season: function() { this.getData() },
+		time: function() { this.getData() },
+		vozes: function() { this.playVoz(this.vozes[0]) }
 	},
 
 
