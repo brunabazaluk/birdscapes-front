@@ -1,9 +1,13 @@
 <template>
 
-	<div>
-		<img src="https://birdscapes.herokuapp.com/image/Aramides_saracura.png">
-		<p>{{ popular[0] }}</p>
-	</div>
+
+	<td  v-for="(img,i) in imgs" :key="i">
+		<img width= "300" :src="'https://birdscapes.herokuapp.com/image/' + img"  > 
+		<p class="pop" >{{ popular[i] }}</p>
+		<p class="ing" >{{ ingles[i] }}</p>
+		<p class="lat" >{{ latim[i] }}</p>
+	</td>
+
 
 	<button type="button" v-on:click="getData">Iniciar</button>
 
@@ -39,10 +43,8 @@
 		<label>inverno</label>
 	</fieldset>
 	
-	<p>{{ time }}</p>
-
 	<div>
-		<p>{{ vozes }}</p>	
+		<p>{{ imgs }}</p>	
 	</div>
 
 </template>
@@ -52,12 +54,11 @@
 
 <script>
 
-//	<div v-for="(img,i) in imgs" :key="i">
-//		<img src="'https://birdscapes.herokuapp.com/image/' + img"  > 
-//		<p>{{ populares[i] }}</p>
+//
+//	<div>
+//		<img src="https://birdscapes.herokuapp.com/image/Aramides_saracura.png">
+//		<p>{{ popular[0] }}</p>
 //	</div>
-
-
 
 import axios from 'axios';
 import {Howl} from 'howler';
@@ -140,5 +141,17 @@ export default {
 	}
 	body {
 		background-color: #e6eea3
+	}
+
+	.pop {
+		font-size: 14pt;
+		font-weight: bold;
+	}
+	.ing {
+		font-size: 12pt;
+	}
+	.lat {
+		font-size: 12pt;
+		font-style: italic;
 	}
 </style>
