@@ -43,9 +43,6 @@
 		<label>inverno</label>
 	</fieldset>
 	
-	<div>
-		<p>{{ imgs }}</p>	
-	</div>
 
 </template>
 
@@ -53,12 +50,6 @@
 
 
 <script>
-
-//
-//	<div>
-//		<img src="https://birdscapes.herokuapp.com/image/Aramides_saracura.png">
-//		<p>{{ popular[0] }}</p>
-//	</div>
 
 import axios from 'axios';
 import {Howl} from 'howler';
@@ -104,7 +95,8 @@ export default {
 				sound[i] = new Howl({
 					src: 'https://birdscapes.herokuapp.com/voz/' + vozes[i],
 					format: ['mp3', 'aac'],
-					volume: 1 - 0.2*i
+					volume: 1 - 0.2*i,
+					loop: true,
 				});
 				sound[i].play();
 			}
