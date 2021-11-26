@@ -2,14 +2,20 @@
 
 
 	<td  v-for="(img,i) in imgs" :key="i">
-		<img width= "300" :src="'https://birdscapes.herokuapp.com/image/' + img"  > 
+		<img width= "250" :src="'https://birdscapes.herokuapp.com/image/' + img"  > 
 		<p class="pop" >{{ popular[i] }}</p>
 		<p class="ing" >{{ ingles[i] }}</p>
 		<p class="lat" >{{ latim[i] }}</p>
 	</td>
 
+	<div>
+		<button type="button" v-on:click="getData">Iniciar</button>
+	</div>
 
-	<button type="button" v-on:click="getData">Iniciar</button>
+	<div>
+		<input v-model="vol" type="range" min=0 max=1 step="0.01"> 
+		<p> {{ vol }} </p>
+	</div>
 
 	<fieldset>	
 		<legend>Horários</legend>
@@ -72,6 +78,8 @@ export default {
 			latim: [],
 			ingles: [],
 			vozes: [],
+			vol: 1,
+			sound: [],
 		}
 	},
 
@@ -89,16 +97,15 @@ export default {
 			this.ingles = data.ingleses;
 		},
 		playVozes(vozes){
-			let sound = []
 			let n = vozes.length
 			for (let i = 0; i<n; i++){
-				sound[i] = new Howl({
+				this.sound[i] = new Howl({
 					src: 'https://birdscapes.herokuapp.com/voz/' + vozes[i],
 					format: ['mp3', 'aac'],
-					volume: 1 - 0.2*i,
+					volume: (1 - 0.2*i),
 					loop: true,
 				});
-				sound[i].play();
+				this.sound[i].play();
 			}
 		}
 		
@@ -107,7 +114,13 @@ export default {
 	watch: {
 		season: function() { this.getData() },
 		time: function() { this.getData() },
-		vozes: function() { this.playVozes(this.vozes) }
+		vozes: function() { this.playVozes(this.vozes) },
+		vol: function() { 
+			let n = this.vozes.length
+			for (let i = 0; i<n; i++) {
+				this.sound[i].volume((1 - 0.2*i)*this.vol)
+			}
+		}
 	},
 
 
