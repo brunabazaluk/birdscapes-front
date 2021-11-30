@@ -48,7 +48,6 @@
 		<input v-model="season" type="radio" id="notify-on" name="notify" value="inverno"  >
 		<label>inverno</label>
 	</fieldset>
-	
 
 </template>
 
@@ -58,7 +57,7 @@
 <script>
 
 import axios from 'axios';
-import {Howl} from 'howler';
+import {Howl, Howler} from 'howler';
 
 const $axios = axios.create({
 	baseURL: 'https://birdscapes.herokuapp.com'
@@ -96,31 +95,32 @@ export default {
 			this.vozes = data.vozes;
 			this.ingles = data.ingleses;
 		},
-		playVozes(vozes){
+		playVozes(vozes,sound){
 			let n = vozes.length
+			sound = sound.splice(0)
 			for (let i = 0; i<n; i++){
-				this.sound[i] = new Howl({
+				sound[i] = new Howl({
 					src: 'https://birdscapes.herokuapp.com/voz/' + vozes[i],
 					format: ['mp3', 'aac'],
-					volume: (1 - 0.2*i),
+					volume: (1 - 0.2*i)*this.vol,
 					loop: true,
 				});
-				this.sound[i].play();
+				sound[i].play();
 			}
-		}
+			console.warn(sound);
+		},
+		setVol(sound,vol){
+			console.warn(sound);
+			Howler.volume(vol);
+		},
 		
 	},
 
 	watch: {
 		season: function() { this.getData() },
 		time: function() { this.getData() },
-		vozes: function() { this.playVozes(this.vozes) },
-		vol: function() { 
-			let n = this.vozes.length
-			for (let i = 0; i<n; i++) {
-				this.sound[i].volume((1 - 0.2*i)*this.vol)
-			}
-		}
+		vozes: function() { this.playVozes(this.vozes, this.sound) },
+		vol: function() { this.setVol(this.sound, this.vol) },
 	},
 
 
