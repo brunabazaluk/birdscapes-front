@@ -1,8 +1,7 @@
 <template>
 
-
 	<td  v-for="(img,i) in imgs" :key="i">
-		<img width= "250" :src="'https://birdscapes.herokuapp.com/image/' + img"  > 
+		<img :width="img_wid[i]" :src="'https://birdscapes.herokuapp.com/image/' + img"  > 
 		<p class="pop" >{{ popular[i] }}</p>
 		<p class="ing" >{{ ingles[i] }}</p>
 		<p class="lat" >{{ latim[i] }}</p>
@@ -79,6 +78,7 @@ export default {
 			vozes: [],
 			vol: 1,
 			sound: [],
+			img_wid: [250,225,200,175,150,125,100,75],
 		}
 	},
 
@@ -103,7 +103,10 @@ export default {
 					src: 'https://birdscapes.herokuapp.com/voz/' + vozes[i],
 					format: ['mp3', 'aac'],
 					volume: (1 - 0.2*i)*this.vol,
-					loop: true,
+					loop: false,
+					onend: function() {
+						setTimeout(function() {sound[i].progress = 0;sound[i].play()}, 5000)
+					},
 				});
 				sound[i].play();
 			}
@@ -149,14 +152,14 @@ export default {
 	}
 
 	.pop {
-		font-size: 14pt;
+		font-size: 12pt;
 		font-weight: bold;
 	}
 	.ing {
-		font-size: 12pt;
+		font-size: 10pt;
 	}
 	.lat {
-		font-size: 12pt;
+		font-size: 10pt;
 		font-style: italic;
 	}
 </style>
