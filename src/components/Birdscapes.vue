@@ -84,7 +84,7 @@ export default {
 
 	methods: {
 		async getData() {
-			const { data } = await $axios.post('/success', {
+			const { data } = await $axios.post('/', {
 				season: this.season,
 				time: this.time,
 				position: this.position
