@@ -104,6 +104,7 @@ export default {
 					format: ['mp3', 'aac'],
 					volume: (1 - 0.2*i)*this.vol,
 					loop: false,
+					stereo: this.randomPos(),
 					onend: function() {
 						setTimeout(function() {sound[i].progress = 0;sound[i].play()}, 5000)
 					},
@@ -115,6 +116,10 @@ export default {
 		setVol(sound,vol){
 			console.warn(sound);
 			Howler.volume(vol);
+		},
+		randomPos(){
+			let n = Math.random();
+			return n*2 - 1;
 		},
 		
 	},
