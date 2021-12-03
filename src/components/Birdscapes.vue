@@ -64,7 +64,6 @@ const $axios = axios.create({
 
 export default {
 	mounted() {	 
-		//this.getData();
 	},
 	data() {
 		return {
@@ -97,6 +96,7 @@ export default {
 		},
 		playVozes(vozes,sound){
 			let n = vozes.length
+			Howler.stop()
 			sound = sound.splice(0)
 			for (let i = 0; i<n; i++){
 				sound[i] = new Howl({
@@ -125,13 +125,6 @@ export default {
 		vozes: function() { this.playVozes(this.vozes, this.sound) },
 		vol: function() { this.setVol(this.sound, this.vol) },
 	},
-
-
-//	computed: {
-//		vozes() {
-//			return this.data.vozes;
-//		}
-//	}
 
 }
 
