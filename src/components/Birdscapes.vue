@@ -83,9 +83,9 @@ export default {
 			ingles: [],
 			vozes: [],
 			vol: 1,
-			back_vol: 1,
-			mata_vol: 1,
-			chuva_vol: 1,
+			back_vol: 0.6,
+			mata_vol: 0.6,
+			chuva_vol: 0.6,
 			sound: [],
 			img_wid: [250,225,200,175,150,125,100,75],
 			img_x: [],
@@ -177,9 +177,9 @@ export default {
 			console.warn(sound);
 			Howler.volume(vol);
 		},
-		setBackVol(back, vol){
-			back.volume(vol);
-		},
+		//setBackVol(back, back_vol){
+		//	back.volume(back_vol);
+		//},
 		randomPos(){
 			let n = Math.random();
 			return n*2 - 1;
@@ -189,8 +189,8 @@ export default {
 
 	watch: {
 		season: function() { this.getData() },
-		time: function() { this.getData() },
-		vozes: function() { this.playVozes(this.vozes, this.sound) },
+		time: function() { this.getData(); this.sonsBackground() },
+		vozes: function() { this.playVozes(this.vozes, this.sound); this.sonsBackground()},
 		vol: function() { this.setVol(this.sound, this.vol) },
 		//mata_vol: function() { this.setBackVol(this.mata, this.mata_vol*this.vol) },
 		//chuva_vol: function() { this.setBackVol(this.chuva, this.chuva_vol*this.vol) },
@@ -246,5 +246,14 @@ export default {
 
 	.quadro {
 		min-height: 6cm;
+	}
+
+	.quadro_vol {
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.cel_vol {
+		padding: 0 3mm 0 3mm;
 	}
 </style>
